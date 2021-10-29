@@ -1,0 +1,87 @@
+﻿@{
+    ViewData["Title"] = "Gerenciar Exemplar";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Pagina de Gerenciamento de Exemplar</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                    <li class="breadcrumb-item active">Gerenciar de Exemplar</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<div class="content" onload="listarLivro.init()">
+    <div class="container-fluid">
+        <div class="">
+            <form>
+                <div class="form-group">
+                    <label class="control-label col-sm-2"><span style="color:red;">*</span>Livro:</label>
+                    <div class="col-sm-2">
+                        <select class="custom-select" id="livroId" name="livroId">
+                            <!-- Carregado por Ajax -->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="setorPos"><span style="color:red;">*</span>Setor:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="setorPos">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="prateleiraPos"><span style="color:red;">*</span>Prateleira:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="prateleiraPos" />
+                        <span>Os campos com <span style="color:red;">*</span> são obrigatórios.</span>
+                        <input type="hidden" id="exemplarId" value="0" />
+                        <input type="hidden" id="posicaoId" value="0" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-success" onclick="indexExemplar.enviar()">Cadastrar</button>
+                    </div><br />
+                    <div class="col-sm-3" id="gravou"></div>
+                </div>
+            </form>
+            <div class="center">
+                <div class="row">
+                    <h2 class="m-1">Lista de Exemplares</h2>
+                    <p class="col-sm-5"></p>
+                    <input type="text" class="form-control col-sm-2 m-1" id="pesquisaExemplar" placeholder="Digite o Nome do Livro" value=""/>
+                    <input type="button" class="form-control col-1 btn-dark m-1" value="Pesquisar" onclick="indexExemplar.pesquisar()" />
+                    <input type="button" class="form-control col-1 btn-default m-1" value="Listar Todos" onclick="indexExemplar.carregar()" />
+                </div>
+                <table id="tabela" class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Livro</th>
+                            <th>Setor</th>
+                            <th>Prateleira</th>
+                            <th>Apagar</th>
+                            <th>Alterar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+@section javascript {
+    <script src="~/js/views/exemplar/ListarLivros.js"></script>
+    <script src="~/js/views/exemplar/Index.js"></script>
+    <script src="~/lib/HTTPClient.js"></script>
+}

@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = "Gerenciar Leitor";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Pagina de Gerenciamento do Leitor</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                    <li class="breadcrumb-item active">Gerenciar Leitor</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="nomeLeitor"><span style="color:red;">*</span>Nome:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="nomeLeitor" placeholder="Digite o Nome do Leitor">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="cpfLeitor"><span style="color:red;">*</span>CPF:</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" id="cpfLeitor" onkeydown="javascript: fMasc( this, mCPF );" maxlength="14" placeholder="Digite o CPF do Leitor"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="dataLeitor"><span style="color:red;">*</span>Data de Nascimento:</label>
+                    <div class="col-sm-2">
+                        <input type="date" class="form-control" id="dataLeitor">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="enderecoLeitor"><span style="color:red;">*</span>Endereco:</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" id="enderecoLeitor" placeholder="Digite o endereco do Leitor"/>
+                        <span>Os campos com <span style="color:red;">*</span> são obrigatórios.</span>
+                        <input type="hidden" id="valorId" value="0"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-success" onclick="indexLeitor.enviar()">Cadastrar</button>
+                    </div><br />
+                    <div class="col-sm-3" id="gravou"></div>
+                </div>
+
+            </form>
+            <div class="center">
+                <div class="row">
+                    <h2 class="m-1">Lista de Leitores</h2>
+                    <p class="col-sm-5"></p>
+                    <input type="text" class="form-control col-sm-2 m-1" id="pesquisaLeitor" onkeydown="javascript: fMasc( this, mCPF );" maxlength="14" placeholder="Digite o CPF do leitor" value="" />
+                    <input type="button" class="form-control col-1 btn-dark m-1" value="Pesquisar" onclick="indexLeitor.pesquisar()" />
+                    <input type="button" class="form-control col-1 btn-default m-1" value="Listar Todos" onclick="indexLeitor.carregar()" />
+                </div>
+                <table id="tabela" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>Endereco</th>
+                            <th>Data de Nascimento</th>
+                            <th>Apagar</th>
+                            <th>Alterar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+@section javascript {
+    <script src="~/js/views/leitor/Index.js"></script>
+    <script src="~/lib/HTTPClient.js"></script>
+    <script src="~/js/views/leitor/mascaraCPF.js"></script>
+}

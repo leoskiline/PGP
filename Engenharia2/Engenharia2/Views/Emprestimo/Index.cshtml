@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Gerenciar Emprestimo";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Pagina Gerenciar Emprestimo</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="~/Home">Home</a></li>
+                    <li class="breadcrumb-item active">Gerenciar Emprestimo</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="">
+            <form id="emprestimo-fdados" class="form-horizontal">
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="cpf"><span style="color:red;">*</span>CPF:</label>
+                    <div class="col-sm-2">
+                        <input type="text" onkeydown="javascript: fMasc( this, mCPF );" maxlength="14" class="form-control" id="cpf" placeholder="Digite o CPF do Leitor">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="livro"><span style="color:red;">*</span>Livro:</label>
+                    <div class="col-sm-2">
+                        <select data-select class="custom-select" id="livroId" name="livroId" multiple>
+                            <!-- Carregado por Ajax -->
+                        </select>
+                    </div>
+                    <span>Os campos com <span style="color:red;">*</span> são obrigatórios.</span>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-success" onclick="indexEmprestimo.enviar()">Cadastrar</button>
+                    </div><br />
+                    <div class="col-sm-3" id="gravou"></div>
+                </div>
+
+            </form>
+
+            <div class="center">
+                <div class="row">
+                    <h2 class="m-1">Lista de Emprestimos</h2>
+                    <p class="col-sm-5"></p>
+                    <input type="text" class="form-control col-sm-2 m-1" id="pesquisaLeitor" onkeydown="javascript: fMasc( this, mCPF );" maxlength="14" placeholder="Digite o CPF do Leitor(a)" value="" />
+                    <input type="button" class="form-control col-1 btn-dark m-1" value="Pesquisar" onclick="indexEmprestimo.pesquisar()" />
+                    <input type="button" class="form-control col-1 btn-default m-1" value="Listar Todos" onclick="indexEmprestimo.carregar()" />
+                </div>
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>CPF</th>
+                            <th>Livro</th>
+                            <th>Data Emprestimo</th>
+                            <th>Data Prevista Devolução</th>
+                            <th>Status</th>
+                            <th>Devolver</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+@section javascript {
+    <script src="~/js/views/emprestimo/Index.js"></script>
+    <script src="~/js/views/emprestimo/ListarLivros.js"></script>
+    <script src="~/js/views/emprestimo/mascaraCPF.js"></script>
+    <script src="~/lib/HTTPClient.js"></script>
+}
